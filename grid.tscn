@@ -1,39 +1,35 @@
-[gd_scene load_steps=6 format=4 uid="uid://cublipseirqtu"]
+[gd_scene load_steps=6 format=4 uid="uid://5bfakum6yh4n"]
 
-[ext_resource type="TileSet" uid="uid://om15hn06qcsp" path="res://aaa/TileSet.tres" id="1_30onu"]
-[ext_resource type="Script" path="res://aaa/grid.gd" id="2_dmvlo"]
-[ext_resource type="Script" path="res://aaa/tile_map.gd" id="3_lru70"]
-[ext_resource type="PackedScene" uid="uid://bufrj3rvug37q" path="res://tete.tscn" id="4_pb74f"]
-[ext_resource type="PackedScene" uid="uid://d3dowbthj82gr" path="res://enemy.tscn" id="5_3unoq"]
+[ext_resource type="Script" path="res://aaa/grid.gd" id="1_uuqmt"]
+[ext_resource type="TileSet" uid="uid://om15hn06qcsp" path="res://aaa/TileSet.tres" id="2_vo7to"]
+[ext_resource type="Script" path="res://aaa/tile_map.gd" id="3_p1ke5"]
+[ext_resource type="PackedScene" uid="uid://bufrj3rvug37q" path="res://tete.tscn" id="4_wx2ss"]
+[ext_resource type="PackedScene" uid="uid://d3dowbthj82gr" path="res://enemy.tscn" id="5_lrikw"]
 
-[node name="main" type="Node2D"]
+[node name="Grid" type="Node2D"]
+script = ExtResource("1_uuqmt")
 
-[node name="Grid" type="Node2D" parent="."]
-script = ExtResource("2_dmvlo")
-
-[node name="TileMap" type="TileMap" parent="Grid"]
-tile_set = ExtResource("1_30onu")
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_vo7to")
 format = 2
-script = ExtResource("3_lru70")
+script = ExtResource("3_p1ke5")
 
-[node name="Layer1" type="TileMapLayer" parent="Grid/TileMap"]
+[node name="Layer1" type="TileMapLayer" parent="TileMap"]
 y_sort_enabled = true
 texture_filter = 1
 use_parent_material = true
 tile_map_data = PackedByteArray("AAD+/wEAAQAAAAAAAAD//wAAAQAAAAAAAAD/////AQAAAAAAAAAAAP7/AQAAAAAAAAAAAP3/AQAAAAAAAAD+/wIAAQAAAAAAAAABAPz/AQAAAAAAAAD9/wMAAQAAAAAAAAABAPv/AQAAAAAAAAD+/wQAAQAAAAAAAAD+/wUAAQAAAAAAAAD//wYAAQAAAAAAAAD//wcAAQAAAAAAAAD8/wAAAQAAAAAAAAD8/wEAAQAAAAAAAAD9/wIAAQAAAAAAAAACAPz/AQAAAAAAAAACAP3/AQAAAAAAAAADAP7/AQAAAAAAAAADAP//AQAAAAAAAAAAAAYAAQAAAAAAAAAAAAUAAQAAAAAAAAACAAIAAQAAAAAAAAACAAEAAQAAAAAAAAADAAAAAQAAAAAAAAD+/wMAAQAAAAAAAAD//wQAAQAAAAAAAAD//wMAAQAAAAAAAAAAAAIAAQAAAAAAAAD//wEAAQAAAAAAAAD//wIAAQAAAAAAAAAAAAQAAQAAAAAAAAD//wUAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAIAAQAAAAAAAAABAAEAAQAAAAAAAAACAAAAAQAAAAAAAAABAP//AQAAAAAAAAACAP7/AQAAAAAAAAABAP3/AQAAAAAAAAACAP//AQAAAAAAAAABAP7/AQAAAAAAAAAAAP//AQAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAABAPr/AQAAAAAAAAAAAPn/AQAAAAAAAAAAAPj/AQAAAAAAAAD8////AQAAAAAAAAD9//7/AQAAAAAAAAD9//3/AQAAAAAAAAD+//z/AQAAAAAAAAD+//v/AQAAAAAAAAD///r/AQAAAAAAAAD///v/AQAAAAAAAAAAAPr/AQAAAAAAAAD///n/AQAAAAAAAAAAAPz/AQAAAAAAAAAAAPv/AQAAAAAAAAD///3/AQAAAAAAAAD///7/AQAAAAAAAAD+////AQAAAAAAAAD+/wAAAQAAAAAAAAD+//7/AQAAAAAAAAD+//3/AQAAAAAAAAD///z/AQAAAAAAAAD9////AQAAAAAAAAD9/wAAAQAAAAAAAAD9/wEAAQAAAAAAAAD7////AQAAAAAAAAD8//7/AQAAAAAAAAD8//3/AQAAAAAAAAD9//z/AQAAAAAAAAD9//v/AQAAAAAAAAD///j/AQAAAAAAAAD///f/AQAAAAAAAAD+//r/AQAAAAAAAAD+//n/AQAAAAAAAAABAAQAAQAAAAAAAAABAAMAAQAAAAAAAAA=")
-tile_set = ExtResource("1_30onu")
+tile_set = ExtResource("2_vo7to")
 
-[node name="Camera2D" type="Camera2D" parent="Grid/TileMap/Layer1"]
+[node name="Camera2D" type="Camera2D" parent="TileMap/Layer1"]
 zoom = Vector2(1.5, 1.5)
 
-[node name="Layer2" type="TileMapLayer" parent="Grid/TileMap"]
+[node name="Layer2" type="TileMapLayer" parent="TileMap"]
 y_sort_enabled = true
-tile_set = ExtResource("1_30onu")
+tile_set = ExtResource("2_vo7to")
 
-[node name="Tete" parent="Grid" instance=ExtResource("4_pb74f")]
-z_as_relative = false
-y_sort_enabled = true
+[node name="Tete" parent="." instance=ExtResource("4_wx2ss")]
 position = Vector2(-125, -63)
 
-[node name="Enemy" parent="Grid" instance=ExtResource("5_3unoq")]
+[node name="Enemy" parent="." instance=ExtResource("5_lrikw")]
 position = Vector2(131, 62)

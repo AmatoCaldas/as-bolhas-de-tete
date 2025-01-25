@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bufrj3rvug37q"]
+
+[ext_resource type="Script" path="res://aaa/tete.gd" id="1_7085s"]
+[ext_resource type="Texture2D" uid="uid://dppnxlegyi8n0" path="res://aaa/72 Character Free/72 Character Free/Char 14/Character 5.png" id="2_gqduv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ts236"]
+atlas = ExtResource("2_gqduv")
+region = Rect2(16, 16, 29, 32)
+
+[node name="Tete" type="Node2D"]
+position = Vector2(1, 3)
+script = ExtResource("1_7085s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = SubResource("AtlasTexture_ts236")
+offset = Vector2(0, -16)
