@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=4 uid="uid://cublipseirqtu"]
+[gd_scene load_steps=10 format=4 uid="uid://cublipseirqtu"]
 
-[ext_resource type="TileSet" uid="uid://om15hn06qcsp" path="res://aaa/TileSet.tres" id="1_30onu"]
+[ext_resource type="TileSet" uid="uid://bv756ifmisrtn" path="res://aaa/TileSet.tres" id="1_30onu"]
 [ext_resource type="Script" path="res://aaa/grid.gd" id="2_dmvlo"]
 [ext_resource type="Script" path="res://aaa/tete.gd" id="3_1pwcb"]
 [ext_resource type="Script" path="res://aaa/tile_map.gd" id="3_lru70"]
 [ext_resource type="Texture2D" uid="uid://dppnxlegyi8n0" path="res://aaa/72 Character Free/72 Character Free/Char 14/Character 5.png" id="3_vbi8p"]
+[ext_resource type="Script" path="res://aaa/enemy.gd" id="6_htc0j"]
+[ext_resource type="Texture2D" uid="uid://b3mpcmceyfi5h" path="res://aaa/72 Character Free/72 Character Free/Char 13/Character 1.png" id="7_qxg2e"]
+[ext_resource type="Script" path="res://aaa/character_1.gd" id="8_807te"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ts236"]
 atlas = ExtResource("3_vbi8p")
@@ -40,7 +43,18 @@ script = ExtResource("3_1pwcb")
 
 [node name="Sprite2D" type="Sprite2D" parent="Grid/Tete"]
 texture_filter = 1
-position = Vector2(-30, -17)
+position = Vector2(-164, -117)
 texture = SubResource("AtlasTexture_ts236")
 centered = false
 offset = Vector2(-16, -32)
+
+[node name="Enemy" type="Node2D" parent="Grid"]
+script = ExtResource("6_htc0j")
+
+[node name="Character1" type="Sprite2D" parent="Grid/Enemy"]
+texture_filter = 1
+position = Vector2(34, -30)
+texture = ExtResource("7_qxg2e")
+region_enabled = true
+region_rect = Rect2(-1.21648, 0.0603352, 65.1569, 63.6147)
+script = ExtResource("8_807te")

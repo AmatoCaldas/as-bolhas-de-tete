@@ -12,3 +12,11 @@ func map_to_world(tile_pos: Vector2) -> Vector2:
 
 	# Retorna a posição calculada no mundo
 	return Vector2(world_x, world_y)
+
+func world_to_map(world_pos: Vector2) -> Vector2:
+	# Calculando a posição no mapa a partir da posição no mundo
+	var map_x = (world_pos.x / tile_width + world_pos.y / tile_height) / 2
+	var map_y = (world_pos.y / tile_height - world_pos.x / tile_width) / 2
+
+	# Retorna a posição calculada no mapa
+	return Vector2(map_x, map_y)

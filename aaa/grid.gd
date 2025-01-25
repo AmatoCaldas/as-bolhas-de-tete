@@ -3,6 +3,7 @@ extends Node2D
 @export var tile_size: Vector2 = Vector2(64, 32)  # Tamanho do tile no seu TileSet (64x32)
 @onready var tilemap: TileMap = $TileMap  # Referência ao TileMap
 @onready var personagem: Node2D = $Tete  # Referência ao personagem
+@onready var enemy: Node2D = $Enemy # Referência ao inimigo
 
 # Limites do grid
 @export var straight_radius: int = 4  # Limite para direções retas (eixos X e Y)
@@ -43,3 +44,6 @@ func _input(event):
 		if (personagem.pode_andar):
 			if tile_center != Vector2(-1, -1):  # Verifica se o clique está dentro do grid
 				personagem.position = tile_center
+		
+		var grid_personagem = tilemap.world_to_map(tile_center)
+		print(grid_personagem)
