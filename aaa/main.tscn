@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://cublipseirqtu"]
+[gd_scene load_steps=7 format=4 uid="uid://cublipseirqtu"]
 
 [ext_resource type="TileSet" uid="uid://om15hn06qcsp" path="res://aaa/TileSet.tres" id="1_30onu"]
-[ext_resource type="Script" path="res://aaa/tile_map.gd" id="2_l22mk"]
+[ext_resource type="Script" path="res://aaa/grid.gd" id="2_dmvlo"]
+[ext_resource type="Script" path="res://aaa/tete.gd" id="3_1pwcb"]
+[ext_resource type="Script" path="res://aaa/tile_map.gd" id="3_lru70"]
 [ext_resource type="Texture2D" uid="uid://dppnxlegyi8n0" path="res://aaa/72 Character Free/72 Character Free/Char 14/Character 5.png" id="3_vbi8p"]
-[ext_resource type="Script" path="res://aaa/char.gd" id="4_3wjkk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ts236"]
 atlas = ExtResource("3_vbi8p")
@@ -11,27 +12,35 @@ region = Rect2(16, 16, 29, 32)
 
 [node name="main" type="Node2D"]
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="Grid" type="Node2D" parent="."]
+script = ExtResource("2_dmvlo")
+
+[node name="TileMap" type="TileMap" parent="Grid"]
 tile_set = ExtResource("1_30onu")
 format = 2
-script = ExtResource("2_l22mk")
+script = ExtResource("3_lru70")
 
-[node name="Layer0" type="TileMapLayer" parent="TileMap"]
+[node name="Layer1" type="TileMapLayer" parent="Grid/TileMap"]
 y_sort_enabled = true
 texture_filter = 1
 use_parent_material = true
-tile_map_data = PackedByteArray("AAD+/wEAAQAAAAAAAAD//wAAAQAAAAAAAAD/////AQAAAAAAAAAAAP7/AQAAAAAAAAAAAP3/AQAAAAAAAAD+/wIAAQAAAAAAAAABAPz/AQAAAAAAAAD9/wMAAQAAAAAAAAABAPv/AQAAAAAAAAD+/wQAAQAAAAAAAAD+/wUAAQAAAAAAAAD//wYAAQAAAAAAAAD//wcAAQAAAAAAAAD7////AQAAAAAAAAD8/wAAAQAAAAAAAAD8/wEAAQAAAAAAAAD9/wIAAQAAAAAAAAACAPz/AQAAAAAAAAACAP3/AQAAAAAAAAADAP7/AQAAAAAAAAADAP//AQAAAAAAAAAAAAYAAQAAAAAAAAAAAAUAAQAAAAAAAAABAAQAAQAAAAAAAAABAAMAAQAAAAAAAAACAAIAAQAAAAAAAAACAAEAAQAAAAAAAAADAAAAAQAAAAAAAAD+/wMAAQAAAAAAAAD//wQAAQAAAAAAAAD//wMAAQAAAAAAAAAAAAIAAQAAAAAAAAD//wEAAQAAAAAAAAD//wIAAQAAAAAAAAAAAAQAAQAAAAAAAAD//wUAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAIAAQAAAAAAAAABAAEAAQAAAAAAAAACAAAAAQAAAAAAAAABAP//AQAAAAAAAAACAP7/AQAAAAAAAAABAP3/AQAAAAAAAAACAP//AQAAAAAAAAABAP7/AQAAAAAAAAAAAP//AQAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAABAPr/AQAAAAAAAAAAAPn/AQAAAAAAAAAAAPj/AQAAAAAAAAD///f/AQAAAAAAAAD///j/AQAAAAAAAAD+//n/AQAAAAAAAAD+//r/AQAAAAAAAAD9//v/AQAAAAAAAAD9//z/AQAAAAAAAAD8//3/AQAAAAAAAAD8//7/AQAAAAAAAAD8////AQAAAAAAAAD9//7/AQAAAAAAAAD9//3/AQAAAAAAAAD+//z/AQAAAAAAAAD+//v/AQAAAAAAAAD///r/AQAAAAAAAAD///v/AQAAAAAAAAAAAPr/AQAAAAAAAAD///n/AQAAAAAAAAAAAPz/AQAAAAAAAAAAAPv/AQAAAAAAAAD///3/AQAAAAAAAAD///7/AQAAAAAAAAD+////AQAAAAAAAAD+/wAAAQAAAAAAAAD+//7/AQAAAAAAAAD+//3/AQAAAAAAAAD///z/AQAAAAAAAAD9////AQAAAAAAAAD9/wAAAQAAAAAAAAD9/wEAAQAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAD+/wEAAQAAAAAAAAD//wAAAQAAAAAAAAD/////AQAAAAAAAAAAAP7/AQAAAAAAAAAAAP3/AQAAAAAAAAD+/wIAAQAAAAAAAAABAPz/AQAAAAAAAAD9/wMAAQAAAAAAAAABAPv/AQAAAAAAAAD+/wQAAQAAAAAAAAD+/wUAAQAAAAAAAAD//wYAAQAAAAAAAAD//wcAAQAAAAAAAAD8/wAAAQAAAAAAAAD8/wEAAQAAAAAAAAD9/wIAAQAAAAAAAAACAPz/AQAAAAAAAAACAP3/AQAAAAAAAAADAP7/AQAAAAAAAAADAP//AQAAAAAAAAAAAAYAAQAAAAAAAAAAAAUAAQAAAAAAAAACAAIAAQAAAAAAAAACAAEAAQAAAAAAAAADAAAAAQAAAAAAAAD+/wMAAQAAAAAAAAD//wQAAQAAAAAAAAD//wMAAQAAAAAAAAAAAAIAAQAAAAAAAAD//wEAAQAAAAAAAAD//wIAAQAAAAAAAAAAAAQAAQAAAAAAAAD//wUAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAIAAQAAAAAAAAABAAEAAQAAAAAAAAACAAAAAQAAAAAAAAABAP//AQAAAAAAAAACAP7/AQAAAAAAAAABAP3/AQAAAAAAAAACAP//AQAAAAAAAAABAP7/AQAAAAAAAAAAAP//AQAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAABAPr/AQAAAAAAAAAAAPn/AQAAAAAAAAAAAPj/AQAAAAAAAAD8////AQAAAAAAAAD9//7/AQAAAAAAAAD9//3/AQAAAAAAAAD+//z/AQAAAAAAAAD+//v/AQAAAAAAAAD///r/AQAAAAAAAAD///v/AQAAAAAAAAAAAPr/AQAAAAAAAAD///n/AQAAAAAAAAAAAPz/AQAAAAAAAAAAAPv/AQAAAAAAAAD///3/AQAAAAAAAAD///7/AQAAAAAAAAD+////AQAAAAAAAAD+/wAAAQAAAAAAAAD+//7/AQAAAAAAAAD+//3/AQAAAAAAAAD///z/AQAAAAAAAAD9////AQAAAAAAAAD9/wAAAQAAAAAAAAD9/wEAAQAAAAAAAAD7////AQAAAAAAAAD8//7/AQAAAAAAAAD8//3/AQAAAAAAAAD9//z/AQAAAAAAAAD9//v/AQAAAAAAAAD///j/AQAAAAAAAAD///f/AQAAAAAAAAD+//r/AQAAAAAAAAD+//n/AQAAAAAAAAABAAQAAQAAAAAAAAABAAMAAQAAAAAAAAA=")
 tile_set = ExtResource("1_30onu")
 
-[node name="Layer1" type="TileMapLayer" parent="TileMap"]
+[node name="Camera2D" type="Camera2D" parent="Grid/TileMap/Layer1"]
+zoom = Vector2(2, 2)
+
+[node name="Layer2" type="TileMapLayer" parent="Grid/TileMap"]
 y_sort_enabled = true
 tile_set = ExtResource("1_30onu")
 
-[node name="Sprite2D" type="Sprite2D" parent="TileMap/Layer1"]
-texture_filter = 1
-position = Vector2(-114, -21)
-texture = SubResource("AtlasTexture_ts236")
-script = ExtResource("4_3wjkk")
+[node name="Tete" type="Node2D" parent="Grid"]
+position = Vector2(0, 1)
+script = ExtResource("3_1pwcb")
 
-[node name="Camera2D" type="Camera2D" parent="TileMap/Layer1"]
-zoom = Vector2(3, 3)
+[node name="Sprite2D" type="Sprite2D" parent="Grid/Tete"]
+texture_filter = 1
+position = Vector2(-30, -17)
+texture = SubResource("AtlasTexture_ts236")
+centered = false
+offset = Vector2(-16, -32)
