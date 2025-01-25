@@ -174,4 +174,19 @@ func _input(event):
 				# Teleporta o personagem para o centro do tile
 				personagem.position = tile_center
 			
-				enemy.position = enemy_to_tile()
+				if is_move_valid(enemy.position, personagem.position):
+					personagem.hp -= 1
+					print("Player ",personagem.hp)
+				else:
+					enemy.position = enemy_to_tile()
+		
+		if (personagem.pode_bater):
+			if(is_move_valid(personagem.position, tile_center) and tile_center == enemy.position):
+				enemy.hp -= 1;
+				print("Inimigo ",enemy.hp)
+			
+			if is_move_valid(enemy.position, personagem.position):
+				personagem.hp -= 1
+				print("Player ",personagem.hp)
+			else:
+					enemy.position = enemy_to_tile()

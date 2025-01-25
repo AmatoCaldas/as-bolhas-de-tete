@@ -7,6 +7,8 @@ extends Node2D
 
 var current_grid_position = Vector2(0, 0)
 var pode_andar = false;
+var pode_bater = false;
+var hp = 10;
 
 func grid_to_world(grid_position: Vector2) -> Vector2:
 	var cell_size = Vector2(64, 32)  # Ajuste com base no tamanho do tile
@@ -28,7 +30,9 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
 		pode_andar = true;
+		pode_bater = false;
 		print("Anda")
 	elif Input.is_action_just_pressed("ui_cancel"):
 		pode_andar = false;
-		print("Anda não")
+		pode_bater = true;
+		print("Taca Carta")
