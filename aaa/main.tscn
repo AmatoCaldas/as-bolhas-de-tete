@@ -1,15 +1,24 @@
-[gd_scene load_steps=2 format=4 uid="uid://cublipseirqtu"]
+[gd_scene load_steps=6 format=4 uid="uid://cublipseirqtu"]
 
 [ext_resource type="TileSet" uid="uid://om15hn06qcsp" path="res://aaa/TileSet.tres" id="1_30onu"]
+[ext_resource type="Script" path="res://aaa/tile_map.gd" id="2_l22mk"]
+[ext_resource type="Texture2D" uid="uid://dppnxlegyi8n0" path="res://aaa/72 Character Free/72 Character Free/Char 14/Character 5.png" id="3_vbi8p"]
+[ext_resource type="Script" path="res://aaa/char.gd" id="4_3wjkk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ts236"]
+atlas = ExtResource("3_vbi8p")
+region = Rect2(16, 16, 29, 32)
 
 [node name="main" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_30onu")
 format = 2
+script = ExtResource("2_l22mk")
 
 [node name="Layer0" type="TileMapLayer" parent="TileMap"]
 y_sort_enabled = true
+texture_filter = 1
 use_parent_material = true
 tile_map_data = PackedByteArray("AAD+/wEAAQAAAAAAAAD//wAAAQAAAAAAAAD/////AQAAAAAAAAAAAP7/AQAAAAAAAAAAAP3/AQAAAAAAAAD+/wIAAQAAAAAAAAABAPz/AQAAAAAAAAD9/wMAAQAAAAAAAAABAPv/AQAAAAAAAAD+/wQAAQAAAAAAAAD+/wUAAQAAAAAAAAD//wYAAQAAAAAAAAD//wcAAQAAAAAAAAD7////AQAAAAAAAAD8/wAAAQAAAAAAAAD8/wEAAQAAAAAAAAD9/wIAAQAAAAAAAAACAPz/AQAAAAAAAAACAP3/AQAAAAAAAAADAP7/AQAAAAAAAAADAP//AQAAAAAAAAAAAAYAAQAAAAAAAAAAAAUAAQAAAAAAAAABAAQAAQAAAAAAAAABAAMAAQAAAAAAAAACAAIAAQAAAAAAAAACAAEAAQAAAAAAAAADAAAAAQAAAAAAAAD+/wMAAQAAAAAAAAD//wQAAQAAAAAAAAD//wMAAQAAAAAAAAAAAAIAAQAAAAAAAAD//wEAAQAAAAAAAAD//wIAAQAAAAAAAAAAAAQAAQAAAAAAAAD//wUAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAIAAQAAAAAAAAABAAEAAQAAAAAAAAACAAAAAQAAAAAAAAABAP//AQAAAAAAAAACAP7/AQAAAAAAAAABAP3/AQAAAAAAAAACAP//AQAAAAAAAAABAP7/AQAAAAAAAAAAAP//AQAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAABAPr/AQAAAAAAAAAAAPn/AQAAAAAAAAAAAPj/AQAAAAAAAAD///f/AQAAAAAAAAD///j/AQAAAAAAAAD+//n/AQAAAAAAAAD+//r/AQAAAAAAAAD9//v/AQAAAAAAAAD9//z/AQAAAAAAAAD8//3/AQAAAAAAAAD8//7/AQAAAAAAAAD8////AQAAAAAAAAD9//7/AQAAAAAAAAD9//3/AQAAAAAAAAD+//z/AQAAAAAAAAD+//v/AQAAAAAAAAD///r/AQAAAAAAAAD///v/AQAAAAAAAAAAAPr/AQAAAAAAAAD///n/AQAAAAAAAAAAAPz/AQAAAAAAAAAAAPv/AQAAAAAAAAD///3/AQAAAAAAAAD///7/AQAAAAAAAAD+////AQAAAAAAAAD+/wAAAQAAAAAAAAD+//7/AQAAAAAAAAD+//3/AQAAAAAAAAD///z/AQAAAAAAAAD9////AQAAAAAAAAD9/wAAAQAAAAAAAAD9/wEAAQAAAAAAAAA=")
 tile_set = ExtResource("1_30onu")
@@ -17,3 +26,12 @@ tile_set = ExtResource("1_30onu")
 [node name="Layer1" type="TileMapLayer" parent="TileMap"]
 y_sort_enabled = true
 tile_set = ExtResource("1_30onu")
+
+[node name="Sprite2D" type="Sprite2D" parent="TileMap/Layer1"]
+texture_filter = 1
+position = Vector2(-114, -21)
+texture = SubResource("AtlasTexture_ts236")
+script = ExtResource("4_3wjkk")
+
+[node name="Camera2D" type="Camera2D" parent="TileMap/Layer1"]
+zoom = Vector2(3, 3)
