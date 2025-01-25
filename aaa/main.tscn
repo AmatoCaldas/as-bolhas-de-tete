@@ -31,9 +31,6 @@ y_sort_enabled = true
 tile_set = ExtResource("1_30onu")
 
 [node name="Tete" parent="Grid" instance=ExtResource("4_pb74f")]
-z_as_relative = false
-y_sort_enabled = true
-position = Vector2(-125, -63)
 
 [node name="Enemy" parent="Grid" instance=ExtResource("5_3unoq")]
-position = Vector2(131, 62)
+position = Vector2(101, -46)
