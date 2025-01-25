@@ -1,7 +1,13 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://om15hn06qcsp"]
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://om15hn06qcsp"]
 
+[ext_resource type="Texture2D" uid="uid://06fibuvrkasb" path="res://aaa/0x72_DungeonTilesetII_v1.7/0x72_DungeonTilesetII_v1.7/atlas_floor-16x16.png" id="1_54ig6"]
 [ext_resource type="Texture2D" uid="uid://pitmjolcp11p" path="res://aaa/isometric tileset/isometric tileset/spritesheet.png" id="1_fet05"]
 [ext_resource type="Texture2D" uid="uid://dppnxlegyi8n0" path="res://aaa/72 Character Free/72 Character Free/Char 14/Character 5.png" id="2_r0bar"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2f1jb"]
+texture = ExtResource("1_54ig6")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ki0d7"]
 texture = ExtResource("1_fet05")
@@ -139,3 +145,4 @@ tile_shape = 1
 tile_size = Vector2i(64, 32)
 sources/1 = SubResource("TileSetAtlasSource_ki0d7")
 sources/2 = SubResource("TileSetAtlasSource_w1wit")
+sources/0 = SubResource("TileSetAtlasSource_2f1jb")

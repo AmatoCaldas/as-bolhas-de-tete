@@ -28,14 +28,14 @@ tile_map_data = PackedByteArray("AAD+/wEAAQAAAAAAAAD//wAAAQAAAAAAAAD/////AQAAAAA
 tile_set = ExtResource("1_30onu")
 
 [node name="Camera2D" type="Camera2D" parent="Grid/TileMap/Layer1"]
-zoom = Vector2(2, 2)
+zoom = Vector2(1.5, 1.5)
 
 [node name="Layer2" type="TileMapLayer" parent="Grid/TileMap"]
 y_sort_enabled = true
 tile_set = ExtResource("1_30onu")
 
 [node name="Tete" type="Node2D" parent="Grid"]
-position = Vector2(0, 1)
+position = Vector2(1, 3)
 script = ExtResource("3_1pwcb")
 
 [node name="Sprite2D" type="Sprite2D" parent="Grid/Tete"]
