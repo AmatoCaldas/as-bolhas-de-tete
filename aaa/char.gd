@@ -26,11 +26,11 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_up"):
-		current_grid_position.y -= 0.5
+		current_grid_position.y -= 1
 	elif Input.is_action_just_pressed("ui_down"):
-		current_grid_position.y += 0.5
+		current_grid_position.y += 1
 	elif Input.is_action_just_pressed("ui_left"):
-		current_grid_position.x -= 0.5
+		current_grid_position.x -= 1
 	elif Input.is_action_just_pressed("ui_right"):
-		current_grid_position.x += 0.5
+		current_grid_position.x += 1
 	position = grid_to_world(current_grid_position)
