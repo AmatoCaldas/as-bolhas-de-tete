@@ -28,11 +28,11 @@ func _ready():
 	position = grid_to_world(current_grid_position)
 
 func _process(delta):
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_key_pressed(KEY_ENTER):
 		pode_andar = true;
 		pode_bater = false;
 		print("Anda")
-	elif Input.is_action_just_pressed("ui_cancel"):
+	elif Input.is_key_pressed(KEY_ESCAPE):
 		pode_andar = false;
 		pode_bater = true;
 		print("Taca Carta")

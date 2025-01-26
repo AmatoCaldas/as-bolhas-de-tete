@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://wi1xbnpsa2wx"]
+
+[ext_resource type="Texture2D" uid="uid://06fibuvrkasb" path="res://aaa/0x72_DungeonTilesetII_v1.7/0x72_DungeonTilesetII_v1.7/atlas_floor-16x16.png" id="1_6o0g4"]
+[ext_resource type="Script" path="res://carta_2_spr.gd" id="2_5xfde"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lair5"]
+atlas = ExtResource("1_6o0g4")
+region = Rect2(0.8, 0.8, 32, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iictn"]
+size = Vector2(34.5, 50.5)
+
+[node name="Carta2" type="Node2D"]
+
+[node name="carta2spr" type="Sprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+position = Vector2(265, 143)
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_lair5")
+script = ExtResource("2_5xfde")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="carta2spr"]
+position = Vector2(-0.25, -0.25)
+shape = SubResource("RectangleShape2D_iictn")

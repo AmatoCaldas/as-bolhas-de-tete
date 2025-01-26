@@ -17,6 +17,8 @@ config/icon="res://thumbnail.png"
 
 [display]
 
+window/size/viewport_width=1290
+window/size/viewport_height=820
 window/size/always_on_top=true
 
 [rendering]

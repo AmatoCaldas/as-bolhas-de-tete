@@ -1,12 +1,31 @@
-[gd_scene load_steps=6 format=4 uid="uid://cublipseirqtu"]
+[gd_scene load_steps=16 format=4 uid="uid://cublipseirqtu"]
 
 [ext_resource type="TileSet" uid="uid://om15hn06qcsp" path="res://aaa/TileSet.tres" id="1_30onu"]
+[ext_resource type="Script" path="res://aaa/main.gd" id="1_bhih3"]
 [ext_resource type="Script" path="res://aaa/grid.gd" id="2_dmvlo"]
 [ext_resource type="Script" path="res://aaa/tile_map.gd" id="3_lru70"]
 [ext_resource type="PackedScene" uid="uid://bufrj3rvug37q" path="res://tete.tscn" id="4_pb74f"]
+[ext_resource type="Texture2D" uid="uid://06fibuvrkasb" path="res://aaa/0x72_DungeonTilesetII_v1.7/0x72_DungeonTilesetII_v1.7/atlas_floor-16x16.png" id="4_xcqc4"]
 [ext_resource type="PackedScene" uid="uid://d3dowbthj82gr" path="res://enemy.tscn" id="5_3unoq"]
+[ext_resource type="Script" path="res://aaa/player_hand.gd" id="10_5i3r8"]
+[ext_resource type="Script" path="res://aaa/deck.gd" id="10_88aaf"]
+[ext_resource type="Texture2D" uid="uid://bthbfeconbjy1" path="res://aaa/0x72_DungeonTilesetII_v1.7/0x72_DungeonTilesetII_v1.7/atlas_walls_high-16x32.png" id="11_7hqu1"]
+[ext_resource type="Script" path="res://aaa/gerenciador.gd" id="11_bp22t"]
+[ext_resource type="Script" path="res://aaa/input_manager.gd" id="12_2dmso"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdc6v"]
+atlas = ExtResource("4_xcqc4")
+region = Rect2(70, 32, 20, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvsav"]
+atlas = ExtResource("11_7hqu1")
+region = Rect2(264, 92, 46, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_khty4"]
+size = Vector2(64, 92)
 
 [node name="main" type="Node2D"]
+script = ExtResource("1_bhih3")
 
 [node name="Grid" type="Node2D" parent="."]
 script = ExtResource("2_dmvlo")
@@ -31,6 +50,40 @@ y_sort_enabled = true
 tile_set = ExtResource("1_30onu")
 
 [node name="Tete" parent="Grid" instance=ExtResource("4_pb74f")]
+position = Vector2(-158, 16)
 
 [node name="Enemy" parent="Grid" instance=ExtResource("5_3unoq")]
-position = Vector2(101, -46)
+position = Vector2(164, 17)
+
+[node name="Gerenciador" type="Node2D" parent="Grid"]
+script = ExtResource("11_bp22t")
+
+[node name="card_backgroundSPR" type="Sprite2D" parent="Grid/Gerenciador"]
+modulate = Color(0.1755, 0.1326, 0.39, 0.552941)
+position = Vector2(273, 183)
+rotation = 1.5708
+scale = Vector2(2.406, 5)
+texture = SubResource("AtlasTexture_kdc6v")
+
+[node name="PlayerHand" type="Node2D" parent="Grid"]
+script = ExtResource("10_5i3r8")
+
+[node name="Deck" type="Node2D" parent="Grid"]
+position = Vector2(100, 175)
+script = ExtResource("10_88aaf")
+
+[node name="Sprite2D" type="Sprite2D" parent="Grid/Deck"]
+texture_filter = 1
+rotation = 1.5708
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_hvsav")
+
+[node name="Area2D" type="Area2D" parent="Grid/Deck"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grid/Deck/Area2D"]
+shape = SubResource("RectangleShape2D_khty4")
+
+[node name="InputManager" type="Node2D" parent="Grid"]
+script = ExtResource("12_2dmso")

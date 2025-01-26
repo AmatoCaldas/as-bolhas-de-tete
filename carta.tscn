@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dyjd5vdl4uyej"]
+
+[ext_resource type="Texture2D" uid="uid://b6xr3fepitjqr" path="res://aaa/0x72_DungeonTilesetII_v1.7/0x72_DungeonTilesetII_v1.7/atlas_walls_low-16x16.png" id="1_7qsr4"]
+[ext_resource type="Script" path="res://card.gd" id="1_wrubv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pl4t4"]
+atlas = ExtResource("1_7qsr4")
+region = Rect2(38, 1, 20, 36)
+filter_clip = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0x4g0"]
+size = Vector2(60, 108)
+
+[node name="Carta" type="Node2D"]
+script = ExtResource("1_wrubv")
+
+[node name="cartaSPR" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -7.62939e-06)
+scale = Vector2(3, 3)
+texture = SubResource("AtlasTexture_pl4t4")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_0x4g0")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
