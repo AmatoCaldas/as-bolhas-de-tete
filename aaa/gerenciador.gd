@@ -5,9 +5,9 @@ var card_being_dragged
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if card_being_dragged:
-		var mouse_pos = get_global_mouse_position()
-		card_being_dragged.position = mouse_pos
-		
+		pass
+		#var mouse_pos = get_global_mouse_position()
+		#card_being_dragged.position = mouse_pos
 
 #func _input(event):
 	#if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -50,16 +50,17 @@ func  raycast_check_for_card():
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$"../InputManager".connect("left_mouse_button_released", on_left_click_release) # Replace with function body.
+	$"../InputManager".connect("left_mouse_button_clicked", on_left_click_clicked) # Replace with function body.
 
-func on_left_click_release():
+func on_left_click_clicked():
 	if card_being_dragged:
 		finish_drag()
 	
 func start_drag(card):
 	card_being_dragged = card
 	card.scale = Vector2(1,1)
+	card_being_dragged.modulate = Color(0,1,0)
 	
 func finish_drag():
-	print("Running")
 	card_being_dragged.scale = Vector2(1.05, 1.05)
+	card_being_dragged.modulate = Color(1,1,1)

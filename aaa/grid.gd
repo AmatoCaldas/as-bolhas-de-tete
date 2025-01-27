@@ -4,6 +4,7 @@ extends Node2D
 @onready var tilemap: TileMap = $TileMap  # Referência ao TileMap
 @onready var personagem: Node2D = $Tete  # Referência ao personagem
 @onready var enemy: Node2D = $Enemy # Referência ao inimigo
+@onready var music_player = $music
 
 # Limites do grid
 @export var straight_radius: int = 4  # Limite para direções retas (eixos X e Y)
@@ -16,14 +17,30 @@ extends Node2D
 
 @onready var main = get_parent()
 
+var used_card
+var turno
+
 func _ready():
+	turno = 0
+	var music = load("res://resources/musica.wav")  # Carregar o arquivo de áudio
+
+	music_player.stream = music  # Definir o stream de áudio
+
+	music_player.play()  # Tocar a música
 	# Posicionar o personagem (Tete) no centro do tile inicial
 	personagem.position = tilemap.map_to_world(initial_tete_tile) + tile_size / 2
 
 	# Posicionar o inimigo (Enemy) no centro do tile inicial
 	enemy.position = tilemap.map_to_world(initial_enemy_tile) + tile_size / 2
 
+func _process(delta):
+	if enemy.hp <= 0:
+		remove_child(enemy)
+		get_tree().change_scene_to_file("res://menu.tscn")
 
+	elif personagem.hp <= 0:
+		remove_child(personagem)
+		get_tree().change_scene_to_file("res://menu.tscn")
 
 # Função chamada ao clicar no mouse
 func _input(event):
@@ -32,6 +49,7 @@ func _input(event):
 		
 		# Converte a posição do mouse para o centro do tile
 		var tile_center = main.mouse_to_tile(mouse_pos)
+		var tile_center_card = main.mouse_to_tile_card(mouse_pos)
 
 		# Verifica se o tile está dentro do grid e se o movimento é válido
 		if (personagem.pode_andar):
@@ -42,16 +60,82 @@ func _input(event):
 				if main.is_move_valid(enemy.position, personagem.position):
 					personagem.hp -= 1
 					print("Player ",personagem.hp)
+					turno += 1
 				else:
 					enemy.position = main.enemy_to_tile()
+					turno += 1
 		
 		if (personagem.pode_bater):
-			if(main.is_move_valid(personagem.position, tile_center) and tile_center == enemy.position):
-				enemy.hp -= 1;
-				print("Inimigo ",enemy.hp)
-			
-			if main.is_move_valid(enemy.position, personagem.position):
-				personagem.hp -= 1
-				print("Player ",personagem.hp)
-			else:
-					enemy.position = main.enemy_to_tile()
+			if ($Gerenciador.card_being_dragged):
+				print('1')
+				if tile_center_card != Vector2(-1, -1) and main.is_move_valid(personagem.position, tile_center_card):
+					print('2')
+					if $Deck.acao_carta() == 1:
+						print("A")
+						print(tile_center_card)
+						print(enemy.position)
+						if tile_center_card == enemy.position:
+							enemy.hp -= 1
+							used_card = true
+							$Deck.acao_carta()
+							used_card = false
+							if main.is_move_valid(enemy.position, personagem.position):
+								personagem.hp -= 1
+								turno += 1
+							else:
+								enemy.position = main.enemy_to_tile()
+								turno += 1
+								
+								
+					elif $Deck.acao_carta() == 2:
+						print("D")
+						if tile_center_card == personagem.position:
+							personagem.hp += 1
+							used_card = true
+							$Deck.acao_carta()
+							used_card = false
+							if main.is_move_valid(enemy.position, personagem.position):
+								personagem.hp -= 1
+								turno += 1
+							else:
+								enemy.position = main.enemy_to_tile()
+								turno += 1
+								
+					elif $Deck.acao_carta() == 4:
+						print("U")
+						if tile_center_card == enemy.position:
+							enemy.hp -= 3
+							used_card = true
+							$Deck.acao_carta()
+							used_card = false
+							if main.is_move_valid(enemy.position, personagem.position):
+								personagem.hp -= 1
+								turno += 1
+							else:
+								enemy.position = main.enemy_to_tile()
+								turno += 1
+								
+								
+					else:
+							used_card = false
+				if tile_center != Vector2(-1, -1) and $Deck.acao_carta() == 3:
+					print("M")
+					personagem.position = tile_center
+					used_card = true
+					$Deck.acao_carta()
+					used_card = false
+					if main.is_move_valid(enemy.position, personagem.position):
+						personagem.hp -= 1
+						turno += 1
+						
+						
+					else:
+						enemy.position = main.enemy_to_tile()
+						turno += 1
+						
+						
+			#if(main.is_move_valid(personagem.position, tile_center) and tile_center == enemy.position):
+				#enemy.hp -= 1;
+				#print("Inimigo ",enemy.hp)
+					
+		

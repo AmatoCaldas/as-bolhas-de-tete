@@ -6,7 +6,7 @@ extends Node2D
 
 var current_grid_position = Vector2(0, 0)
 var pode_andar = false;
-var hp = 10;
+var hp = 15;
 
 func grid_to_world(grid_position: Vector2) -> Vector2:
 	var cell_size = Vector2(64, 32)  # Ajuste com base no tamanho do tile

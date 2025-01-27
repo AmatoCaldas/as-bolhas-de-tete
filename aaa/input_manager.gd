@@ -19,7 +19,8 @@ func _input(event):
 			emit_signal("left_mouse_button_clicked")
 			raycast_at_cursor()
 		else:
-			emit_signal("left_mouse_button_released")
+			pass
+			#emit_signal("left_mouse_button_released")
 
 
 func  raycast_at_cursor():
@@ -38,4 +39,6 @@ func  raycast_at_cursor():
 				card_manager_reference.start_drag(card_found)
 		elif result_collision_mask == COLLISION_MASK_DECK:
 			#Deck Clicked
-			deck_reference.draw_card()
+			var card_found = result[0].collider.get_parent()
+			if card_found:
+				deck_reference.draw_card()

@@ -25,6 +25,13 @@ func add_card_to_hand(card):
 	player_hand.insert(0, card)
 	print(player_hand)
 	update_hand_positions()
+	
+func remove_card_to_hand(card):
+	if player_hand == null:
+		print("erro")
+	player_hand.erase(card)
+	print(player_hand)
+	update_hand_positions()
 
 func update_hand_positions():
 	print("Atualizando")

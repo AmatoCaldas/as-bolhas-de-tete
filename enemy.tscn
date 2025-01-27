@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3dowbthj82gr"]
+[gd_scene load_steps=5 format=3 uid="uid://d3dowbthj82gr"]
 
 [ext_resource type="Script" path="res://aaa/enemy.gd" id="1_rv8ov"]
 [ext_resource type="Texture2D" uid="uid://b3mpcmceyfi5h" path="res://aaa/72 Character Free/72 Character Free/Char 13/Character 1.png" id="2_3rchc"]
 [ext_resource type="Script" path="res://aaa/character_1.gd" id="3_o8q8n"]
+[ext_resource type="Texture2D" uid="uid://ipb40spcub6a" path="res://aaa/sprites/bolha bolada.png" id="4_otuhl"]
 
 [node name="Enemy" type="Node2D"]
 script = ExtResource("1_rv8ov")
@@ -14,3 +15,8 @@ texture = ExtResource("2_3rchc")
 region_enabled = true
 region_rect = Rect2(-1.21648, 0.0603352, 65.1569, 63.6147)
 script = ExtResource("3_o8q8n")
+
+[node name="BolhaBolada" type="Sprite2D" parent="."]
+position = Vector2(-1, -21)
+scale = Vector2(0.0507813, 0.0507813)
+texture = ExtResource("4_otuhl")

@@ -1,0 +1,110 @@
+[gd_scene load_steps=7 format=3 uid="uid://ci4ownv0dtujt"]
+
+[ext_resource type="FontFile" uid="uid://c0g54ijl62np1" path="res://documents/vinque/Vinque Rg.otf" id="1_hrvtd"]
+[ext_resource type="Script" path="res://menu.gd" id="1_p74me"]
+[ext_resource type="AudioStream" uid="uid://cuy5f7i86lwdv" path="res://resources/musica.wav" id="3_a7fw0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wx45b"]
+font = ExtResource("1_hrvtd")
+font_size = 62
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 7
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8242i"]
+font = ExtResource("1_hrvtd")
+font_size = 40
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_m1ji1"]
+font = ExtResource("1_hrvtd")
+font_size = 20
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 2)
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_p74me")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 1516.0
+offset_bottom = 827.0
+color = Color(0.951225, 0.828589, 0.978687, 1)
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -892.27
+offset_top = 235.0
+offset_right = 892.27
+offset_bottom = 390.0
+grow_horizontal = 2
+text = "EXPLODE BOLHAS:
+A VOLTA DOS QUE NÃO FORAM"
+label_settings = SubResource("LabelSettings_wx45b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 633.0
+offset_top = 471.0
+offset_right = 885.0
+offset_bottom = 528.0
+
+[node name="NewGame" type="Button" parent="ButtonsContainer" groups=["Buttons"]]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.819949, 0.793114, 3.85046e-07, 1)
+theme_override_fonts/font = ExtResource("1_hrvtd")
+theme_override_font_sizes/font_size = 40
+text = "NOVO JOGO"
+flat = true
+
+[node name="Label" type="Label" parent="ButtonsContainer/NewGame"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -122.0
+offset_right = 122.0
+offset_bottom = 49.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "NOVO JOGO"
+label_settings = SubResource("LabelSettings_8242i")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -195.0
+offset_top = -31.0
+offset_bottom = -1.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "VERSÃO ALPHA 0.1"
+label_settings = SubResource("LabelSettings_m1ji1")
+
+[node name="musica" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_a7fw0")

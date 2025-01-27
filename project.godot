@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="TileMapLayer Basics in 4.3 (Tilemap Layers, with Video Tutorial)"
-run/main_scene="res://aaa/main.tscn"
+run/main_scene="res://menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://thumbnail.png"
+run/size/viewport_width=1290
 
 [display]
 
-window/size/viewport_width=1290
+window/size/viewport_width=1500
 window/size/viewport_height=820
 window/size/always_on_top=true
 

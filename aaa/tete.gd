@@ -32,7 +32,7 @@ func _process(delta):
 		pode_andar = true;
 		pode_bater = false;
 		print("Anda")
-	elif Input.is_key_pressed(KEY_ESCAPE):
+	elif Input.is_key_pressed(KEY_SHIFT):
 		pode_andar = false;
 		pode_bater = true;
 		print("Taca Carta")

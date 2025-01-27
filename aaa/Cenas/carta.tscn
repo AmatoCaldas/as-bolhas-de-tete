@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://n2uvvsuufjyy"]
+
+[ext_resource type="Script" path="res://card.gd" id="1_si6cv"]
+[ext_resource type="Texture2D" uid="uid://ds3hk8o3npsou" path="res://aaa/SpritesCartas/Ataque.jpg" id="2_ovjdj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0x4g0"]
+size = Vector2(60, 108)
+
+[node name="Carta" type="Node2D"]
+script = ExtResource("1_si6cv")
+
+[node name="cartaSPR" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -7.62939e-06)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_ovjdj")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_0x4g0")
+
+[node name="Ataque" type="RichTextLabel" parent="."]
+modulate = Color(0, 0, 0, 1)
+clip_children = 2
+texture_filter = 1
+offset_left = 16.0
+offset_top = 32.0
+offset_right = 30.0
+offset_bottom = 54.0
+text = "0"
+
+[node name="Defesa" type="RichTextLabel" parent="."]
+modulate = Color(0, 0, 0, 1)
+clip_children = 2
+texture_filter = 1
+offset_left = -30.0
+offset_top = 32.0
+offset_right = -16.0
+offset_bottom = 54.0
+text = "0"
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

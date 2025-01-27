@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://cublipseirqtu"]
+[gd_scene load_steps=21 format=4 uid="uid://cublipseirqtu"]
 
 [ext_resource type="TileSet" uid="uid://om15hn06qcsp" path="res://aaa/TileSet.tres" id="1_30onu"]
 [ext_resource type="Script" path="res://aaa/main.gd" id="1_bhih3"]
@@ -12,6 +12,11 @@
 [ext_resource type="Texture2D" uid="uid://bthbfeconbjy1" path="res://aaa/0x72_DungeonTilesetII_v1.7/0x72_DungeonTilesetII_v1.7/atlas_walls_high-16x32.png" id="11_7hqu1"]
 [ext_resource type="Script" path="res://aaa/gerenciador.gd" id="11_bp22t"]
 [ext_resource type="Script" path="res://aaa/input_manager.gd" id="12_2dmso"]
+[ext_resource type="AudioStream" uid="uid://cuy5f7i86lwdv" path="res://resources/musica.wav" id="13_4p0xu"]
+[ext_resource type="Script" path="res://aaa/vida_player.gd" id="14_8y7pj"]
+[ext_resource type="FontFile" uid="uid://c0g54ijl62np1" path="res://documents/vinque/Vinque Rg.otf" id="14_njsp1"]
+[ext_resource type="Script" path="res://aaa/vida_enemy.gd" id="15_317p2"]
+[ext_resource type="Script" path="res://aaa/turno.gd" id="17_phdun"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kdc6v"]
 atlas = ExtResource("4_xcqc4")
@@ -39,7 +44,7 @@ script = ExtResource("3_lru70")
 y_sort_enabled = true
 texture_filter = 1
 use_parent_material = true
-tile_map_data = PackedByteArray("AAD+/wEAAQAAAAAAAAD//wAAAQAAAAAAAAD/////AQAAAAAAAAAAAP7/AQAAAAAAAAAAAP3/AQAAAAAAAAD+/wIAAQAAAAAAAAABAPz/AQAAAAAAAAD9/wMAAQAAAAAAAAABAPv/AQAAAAAAAAD+/wQAAQAAAAAAAAD+/wUAAQAAAAAAAAD//wYAAQAAAAAAAAD//wcAAQAAAAAAAAD8/wAAAQAAAAAAAAD8/wEAAQAAAAAAAAD9/wIAAQAAAAAAAAACAPz/AQAAAAAAAAACAP3/AQAAAAAAAAADAP7/AQAAAAAAAAADAP//AQAAAAAAAAAAAAYAAQAAAAAAAAAAAAUAAQAAAAAAAAACAAIAAQAAAAAAAAACAAEAAQAAAAAAAAADAAAAAQAAAAAAAAD+/wMAAQAAAAAAAAD//wQAAQAAAAAAAAD//wMAAQAAAAAAAAAAAAIAAQAAAAAAAAD//wEAAQAAAAAAAAD//wIAAQAAAAAAAAAAAAQAAQAAAAAAAAD//wUAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAIAAQAAAAAAAAABAAEAAQAAAAAAAAACAAAAAQAAAAAAAAABAP//AQAAAAAAAAACAP7/AQAAAAAAAAABAP3/AQAAAAAAAAACAP//AQAAAAAAAAABAP7/AQAAAAAAAAAAAP//AQAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAABAPr/AQAAAAAAAAAAAPn/AQAAAAAAAAAAAPj/AQAAAAAAAAD8////AQAAAAAAAAD9//7/AQAAAAAAAAD9//3/AQAAAAAAAAD+//z/AQAAAAAAAAD+//v/AQAAAAAAAAD///r/AQAAAAAAAAD///v/AQAAAAAAAAAAAPr/AQAAAAAAAAD///n/AQAAAAAAAAAAAPz/AQAAAAAAAAAAAPv/AQAAAAAAAAD///3/AQAAAAAAAAD///7/AQAAAAAAAAD+////AQAAAAAAAAD+/wAAAQAAAAAAAAD+//7/AQAAAAAAAAD+//3/AQAAAAAAAAD///z/AQAAAAAAAAD9////AQAAAAAAAAD9/wAAAQAAAAAAAAD9/wEAAQAAAAAAAAD7////AQAAAAAAAAD8//7/AQAAAAAAAAD8//3/AQAAAAAAAAD9//z/AQAAAAAAAAD9//v/AQAAAAAAAAD///j/AQAAAAAAAAD///f/AQAAAAAAAAD+//r/AQAAAAAAAAD+//n/AQAAAAAAAAABAAQAAQAAAAAAAAABAAMAAQAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAD+/wEAAQACAAIAAAD//wAAAQACAAIAAAD/////AQACAAIAAAAAAP7/AQAKAAEAAAAAAP3/AQAKAAEAAAD+/wIAAQACAAIAAAABAPz/AQAIAAEAAAD9/wMAAQACAAIAAAABAPv/AQAKAAEAAAD+/wQAAQACAAIAAAD+/wUAAQACAAIAAAD//wYAAQACAAIAAAD//wcAAQACAAIAAAD8/wAAAQACAAIAAAD8/wEAAQACAAIAAAD9/wIAAQACAAIAAAACAPz/AQAKAAEAAAACAP3/AQAEAAkAAAADAP7/AQAHAAkAAAADAP//AQAGAAYAAAAAAAYAAQAKAAEAAAAAAAUAAQAJAAEAAAACAAIAAQAKAAEAAAACAAEAAQAFAAgAAAADAAAAAQAHAAkAAAD+/wMAAQACAAIAAAD//wQAAQACAAIAAAD//wMAAQACAAIAAAAAAAIAAQAKAAEAAAD//wEAAQACAAIAAAD//wIAAQACAAIAAAAAAAQAAQAKAAEAAAD//wUAAQACAAIAAAAAAAMAAQAKAAEAAAAAAAEAAQAKAAEAAAABAAIAAQAIAAEAAAABAAEAAQAKAAEAAAACAAAAAQAEAAkAAAABAP//AQAKAAEAAAACAP7/AQAIAAkAAAABAP3/AQAKAAEAAAACAP//AQAHAAkAAAABAP7/AQAIAAEAAAAAAP//AQAKAAEAAAABAAAAAQAKAAEAAAAAAAAAAQAIAAEAAAABAPr/AQAKAAEAAAAAAPn/AQACAAIAAAD8////AQACAAIAAAD9//7/AQACAAIAAAD9//3/AQACAAIAAAD+//z/AQACAAIAAAD+//v/AQACAAIAAAD///r/AQACAAIAAAD///v/AQACAAIAAAAAAPr/AQACAAIAAAD///n/AQACAAIAAAAAAPz/AQAKAAEAAAAAAPv/AQAKAAEAAAD///3/AQACAAIAAAD///7/AQACAAIAAAD+////AQACAAIAAAD+/wAAAQACAAIAAAD+//7/AQACAAIAAAD+//3/AQACAAIAAAD///z/AQACAAIAAAD9////AQACAAIAAAD9/wAAAQACAAIAAAD9/wEAAQACAAIAAAD7////AQACAAIAAAD8//7/AQACAAIAAAD8//3/AQACAAIAAAD9//z/AQACAAIAAAD9//v/AQACAAIAAAD///j/AQACAAIAAAD///f/AQACAAIAAAD+//r/AQACAAIAAAD+//n/AQACAAIAAAABAAQAAQAKAAEAAAABAAMAAQAJAAEAAAAAAPj/AQACAAIAAAA=")
 tile_set = ExtResource("1_30onu")
 
 [node name="Camera2D" type="Camera2D" parent="Grid/TileMap/Layer1"]
@@ -85,5 +90,59 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Grid/Deck/Area2D"]
 shape = SubResource("RectangleShape2D_khty4")
 
+[node name="RichTextLabel" type="RichTextLabel" parent="Grid/Deck"]
+modulate = Color(1, 0.8, 0, 1)
+texture_filter = 1
+offset_left = -9.0
+offset_top = -12.0
+offset_right = 31.0
+offset_bottom = 28.0
+text = "0"
+
 [node name="InputManager" type="Node2D" parent="Grid"]
 script = ExtResource("12_2dmso")
+
+[node name="music" type="AudioStreamPlayer2D" parent="Grid"]
+stream = ExtResource("13_4p0xu")
+
+[node name="VidaPlayer" type="RichTextLabel" parent="Grid"]
+modulate = Color(1, 0, 0, 1)
+texture_filter = 1
+offset_left = -448.0
+offset_top = 144.0
+offset_right = -271.0
+offset_bottom = 184.0
+scale = Vector2(2, 2)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/normal_font = ExtResource("14_njsp1")
+script = ExtResource("14_8y7pj")
+
+[node name="VidaEnemy" type="RichTextLabel" parent="Grid"]
+modulate = Color(0, 0, 0, 1)
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 70.0
+offset_top = -198.0
+offset_right = 266.0
+offset_bottom = -158.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/normal_font = ExtResource("14_njsp1")
+script = ExtResource("15_317p2")
+
+[node name="Turno" type="RichTextLabel" parent="Grid"]
+offset_left = -327.0
+offset_top = -201.0
+offset_right = -221.0
+offset_bottom = -161.0
+scale = Vector2(2, 2)
+theme_override_fonts/normal_font = ExtResource("14_njsp1")
+script = ExtResource("17_phdun")

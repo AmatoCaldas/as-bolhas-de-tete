@@ -28,19 +28,32 @@ func _process(delta: float) -> void:
 func mouse_to_tile(mouse_pos: Vector2) -> Vector2:
 	# Posição relativa do mouse em relação ao TileMap
 	var rel_mouse_pos = mouse_pos - tilemap.global_position
+	
+		# Posição relativa do inimigo em relação ao TileMap
+	var rel_enemy_pos = enemy.position - tilemap.global_position
 
 	# Convertendo as coordenadas do mundo para o sistema isométrico
 	var iso_y = (rel_mouse_pos.x / tile_size.x - rel_mouse_pos.y / tile_size.y)
 	var iso_x = (rel_mouse_pos.y / tile_size.y + rel_mouse_pos.x / tile_size.x)
+	
+		# Convertendo as coordenadas do mundo para o sistema isométrico (inimigo)
+	var enemy_iso_y = (rel_enemy_pos.x / tile_size.x - rel_enemy_pos.y / tile_size.y)
+	var enemy_iso_x = (rel_enemy_pos.y / tile_size.y + rel_enemy_pos.x / tile_size.x)
 
 	# Arredondar para obter a coordenada do tile mais próximo
 	var tile_pos = Vector2(round(iso_x), round(iso_y))
+	var enemy_tile_pos = Vector2(round(enemy_iso_x), round(enemy_iso_y))
+
 
 	# Verificar se o tile está dentro dos limites do grid losangular
 	# Distância reta (eixo X ou Y) deve estar dentro de straight_radius
 	# Distância diagonal (soma de |x| + |y|) deve estar dentro de diagonal_radius
 	if abs(tile_pos.x) > straight_radius or abs(tile_pos.y) > straight_radius or abs(tile_pos.x) + abs(tile_pos.y) > diagonal_radius:
 		return Vector2(-1, -1)  # Retorna um valor inválido para indicar fora do grid
+		
+	if(abs(tile_pos) == abs(enemy_tile_pos)):
+		return Vector2(-1, -1)  # Retorna um valor inválido para indicar fora do grid
+
 
 	# Converter a coordenada de volta para a posição no mundo (centro do tile)
 	var world_pos = tilemap.map_to_world(tile_pos)
@@ -48,6 +61,31 @@ func mouse_to_tile(mouse_pos: Vector2) -> Vector2:
 	return world_pos
 	
 	
+func mouse_to_tile_card(mouse_pos: Vector2) -> Vector2:
+	# Posição relativa do mouse em relação ao TileMap
+	var rel_mouse_pos = mouse_pos - tilemap.global_position
+
+	# Convertendo as coordenadas do mundo para o sistema isométrico
+	var iso_y = (rel_mouse_pos.x / tile_size.x - rel_mouse_pos.y / tile_size.y)
+	var iso_x = (rel_mouse_pos.y / tile_size.y + rel_mouse_pos.x / tile_size.x)
+	
+
+	# Arredondar para obter a coordenada do tile mais próximo
+	var tile_pos = Vector2(round(iso_x), round(iso_y))
+
+
+	# Verificar se o tile está dentro dos limites do grid losangular
+	# Distância reta (eixo X ou Y) deve estar dentro de straight_radius
+	# Distância diagonal (soma de |x| + |y|) deve estar dentro de diagonal_radius
+	if abs(tile_pos.x) > straight_radius or abs(tile_pos.y) > straight_radius or abs(tile_pos.x) + abs(tile_pos.y) > diagonal_radius:
+		return Vector2(-1, -1)  # Retorna um valor inválido para indicar fora do grid
+		
+
+
+	# Converter a coordenada de volta para a posição no mundo (centro do tile)
+	var world_pos = tilemap.map_to_world(tile_pos)
+	#world_pos += tile_size / 2 # Ajusta para o centro do tile
+	return world_pos
 
 func enemy_to_tile():
 	# Posição relativa do personagem principal em relação ao TileMap
@@ -73,8 +111,8 @@ func enemy_to_tile():
 
 	# Limitar o movimento para no máximo 1 tile em qualquer direção
 	var move_delta = Vector2(
-		clamp(direction.x, -2, 2),
-		clamp(direction.y, -2, 2)
+		clamp(direction.x, -2, 1),
+		clamp(direction.y, -2, 1)
 	)
 
 	# Nova posição do tile ajustada
@@ -150,9 +188,9 @@ func is_move_valid(current_pos: Vector2, target_pos: Vector2) -> bool:
 	var delta = grid_moveto - grid_personagem
 
 	# Verificar se o movimento é uma direção reta (1 tile em X ou Y)
-	if abs(delta.x) == 1 and delta.y == 0:  # Movimento reto em X
+	if abs(delta.x) == 0.5 and delta.y == 0:  # Movimento reto em X
 		return true
-	if abs(delta.y) == 1 and delta.x == 0:  # Movimento reto em Y
+	if abs(delta.y) == 0.5 and delta.x == 0:  # Movimento reto em Y
 		return true
 	
 	# Verificar se o movimento é uma direção diagonal (2 tiles em ambos os eixos)
